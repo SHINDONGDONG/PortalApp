@@ -11,6 +11,9 @@ import UIKit
 import SideMenu
 import WebKit
 
+protocol MenuListControllerDelegate:AnyObject {
+    func didTapMenu(item: MenuListController.Items)
+}
 
 class AController: UIViewController {
     
@@ -44,7 +47,7 @@ class AController: UIViewController {
     }
     
     func configRightItems() {
-        let button = navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapClose))
     }
     
    
@@ -61,7 +64,34 @@ class AController: UIViewController {
 //메뉴에 들어갈 uitable을 만들어준다.
 class MenuListController: UITableViewController {
     
-    var items = ["IOS","Android","WEB","Flutter","Linux"]
+    weak var delegate:MenuListControllerDelegate?
+    
+//    items = ["IOS","Android","WEB","Flutter","Linux"]
+     enum Items:String,CaseIterable {
+        case ios = "IOS"
+        case and = "Android"
+        case web = "WEB"
+        case flu = "Flutter"
+        case lin = "Linux"
+        case loc = "Location"
+        
+        var itemImage:String {
+            switch self {
+            case .ios:
+                return "house"
+            case .and:
+                return "person"
+            case .web:
+                return "list.dash"
+            case .flu:
+                return "airplane"
+            case .lin:
+                return "gear"
+            case .loc:
+                return "location"
+            }
+        }
+    }
     let darkColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
     
     
@@ -75,15 +105,17 @@ class MenuListController: UITableViewController {
     
     //테이블을 갯수만큼 리턴한다.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return Items.allCases.count
     }
     //cell을 만들어준다.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //cell을 만들어준다 tableview.dequeueReusableCell(withIndentifier cell. for indexPath
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",  for: indexPath)
         // textlable . text에 items를 하나씩 넣어준다.
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = Items.allCases[indexPath.row].rawValue
         cell.textLabel?.textColor = .white
+        cell.imageView?.image = UIImage(systemName: Items.allCases[indexPath.row].itemImage)
+        cell.imageView?.tintColor = .white
         cell.backgroundColor = darkColor
         return cell
     }
@@ -93,7 +125,9 @@ class MenuListController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //        let webView = storyboard.instantiateViewController(withIdentifier: "WebViewController")
-        navigationController?.pushViewController(WebViewController(), animated: true)
+        navigationController?.pushViewController(indexPath.row == 5 ? LocationViewController() : WebViewController(), animated: true)
+        let item = Items.allCases[indexPath.row]
+        delegate?.didTapMenu(item: item)
     }
     
 }

@@ -23,6 +23,9 @@
 		9B4F6FA62776BD6300CB27DE /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F6FA52776BD6300CB27DE /* HomeController.swift */; };
 		9B65AF9F27925A8900123B86 /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B65AF9E27925A8900123B86 /* MyTableViewCell.xib */; };
 		9B65AFA127925CE500123B86 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B65AFA027925CE500123B86 /* MyTableViewCell.swift */; };
+		9B776B7A27CE463A00732BE1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B776B7927CE463A00732BE1 /* LocationViewController.swift */; };
+		9B776B7C27CE46B700732BE1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B776B7B27CE46B700732BE1 /* LocationManager.swift */; };
+		9B776B7E27CE46C400732BE1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B776B7D27CE46C400732BE1 /* SearchViewController.swift */; };
 		9BDD860B2776C5870009F12C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDD860A2776C5870009F12C /* SecondViewController.swift */; };
 		CF3D3A5728C47C33AF163D2C /* Pods_PortalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26F040B0CE90584865760D2 /* Pods_PortalApp.framework */; };
 		D2584F4745F44AC50A7BF730 /* Pods_PortalApp_PortalAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34D5899DBD1E84C1181088A /* Pods_PortalApp_PortalAppUITests.framework */; };
@@ -67,6 +70,9 @@
 		9B4F6FA52776BD6300CB27DE /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		9B65AF9E27925A8900123B86 /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
 		9B65AFA027925CE500123B86 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		9B776B7927CE463A00732BE1 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		9B776B7B27CE46B700732BE1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		9B776B7D27CE46C400732BE1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9BDD860A2776C5870009F12C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9E5C44BCF42E0C74400BFA77 /* Pods-PortalApp-PortalAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PortalApp-PortalAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-PortalApp-PortalAppUITests/Pods-PortalApp-PortalAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A26F040B0CE90584865760D2 /* Pods_PortalApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PortalApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +163,9 @@
 				9B215BA8279272F900F94C48 /* AController.swift */,
 				9B215BAA2792730300F94C48 /* BController.swift */,
 				9B09D79E27A4E3100048BEF2 /* WebViewController.swift */,
+				9B776B7927CE463A00732BE1 /* LocationViewController.swift */,
+				9B776B7B27CE46B700732BE1 /* LocationManager.swift */,
+				9B776B7D27CE46C400732BE1 /* SearchViewController.swift */,
 			);
 			path = PortalApp;
 			sourceTree = "<group>";
@@ -431,8 +440,11 @@
 				9B65AFA127925CE500123B86 /* MyTableViewCell.swift in Sources */,
 				9B09D79F27A4E3100048BEF2 /* WebViewController.swift in Sources */,
 				9B215BA9279272F900F94C48 /* AController.swift in Sources */,
+				9B776B7C27CE46B700732BE1 /* LocationManager.swift in Sources */,
 				9B4F6FA62776BD6300CB27DE /* HomeController.swift in Sources */,
 				9B2E85882764384D00F9330C /* AppDelegate.swift in Sources */,
+				9B776B7E27CE46C400732BE1 /* SearchViewController.swift in Sources */,
+				9B776B7A27CE463A00732BE1 /* LocationViewController.swift in Sources */,
 				9B215BAB2792730300F94C48 /* BController.swift in Sources */,
 				9B2E85B827643F2D00F9330C /* Extension_UIView.swift in Sources */,
 				9BDD860B2776C5870009F12C /* SecondViewController.swift in Sources */,

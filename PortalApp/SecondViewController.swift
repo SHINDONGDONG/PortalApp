@@ -15,9 +15,36 @@ class SecondViewController: UIViewController {
 //    }
     
     
+    let aVC = AController()
+    
     @IBOutlet weak var viewTableView: UITableView!
-    let contentArray = ["게시판","업무","커뮤니티","회의실예약","사원정보","설정"]
-    let contentImageArray = ["calendar","folder","display","alarm.fill","person.3.fill","questionmark.circle.fill"]
+    private enum contentArray:String,CaseIterable {
+        case board = "게시판"
+        case work = "업무"
+        case community = "커뮤니티"
+        case kaigi = "회의실예약"
+        case userInfo = "사원정보"
+        case settings = "설정"
+        
+        var imageName:String {
+            switch self {
+            case .board:
+                return "calendar"
+            case .work:
+                return "folder"
+            case .community:
+                return "display"
+            case .kaigi:
+                return "alarm.fill"
+            case .userInfo:
+                return "person.3.fill"
+            case .settings:
+                return "questionmark.circle.fill"
+            }
+        }
+    }
+//    let contentArray = ["게시판","업무","커뮤니티","회의실예약","사원정보","설정"]
+//    let contentImageArray = ["calendar","folder","display","alarm.fill","person.3.fill","questionmark.circle.fill"]
     @objc func back(){
         self.navigationController?.popViewController(animated: true)
     }
@@ -25,9 +52,8 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let myTableViewCell = UINib(nibName: String(describing: MyTableViewCell.self), bundle: nil)
         
+        let myTableViewCell = UINib(nibName: String(describing: MyTableViewCell.self), bundle: nil)
         self.viewTableView.register(myTableViewCell, forCellReuseIdentifier: "myTableViewCell")
         self.viewTableView.rowHeight = UITableView.automaticDimension
         self.viewTableView.estimatedRowHeight = 120
@@ -54,14 +80,14 @@ extension SecondViewController: UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contentArray.count
+        return contentArray.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         viewTableView.deselectRow(at: indexPath,animated: true)
         let cell = viewTableView.dequeueReusableCell(withIdentifier: "myTableViewCell", for: indexPath) as! MyTableViewCell
-        cell.content.text = contentArray[indexPath.row]
-        cell.imageview.image = UIImage(systemName: self.contentImageArray[indexPath.item])
+        cell.content.text = contentArray.allCases[indexPath.row].rawValue
+        cell.imageview.image = UIImage(systemName: contentArray.allCases[indexPath.row].imageName)
         return cell
     }
     
