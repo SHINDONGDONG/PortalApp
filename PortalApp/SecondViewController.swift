@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UICollectionViewDelegate {
 //    @IBAction func next(_ sender: UIButton) {
 //        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 //        let third = storyboard.instantiateViewController(withIdentifier: "ThirdViewController")
@@ -16,9 +16,8 @@ class SecondViewController: UIViewController {
     
     
     let aVC = AController()
-    
     @IBOutlet weak var viewTableView: UITableView!
-    private enum contentArray:String,CaseIterable {
+    enum contentArray:String,CaseIterable {
         case board = "게시판"
         case work = "업무"
         case community = "커뮤니티"
@@ -43,12 +42,18 @@ class SecondViewController: UIViewController {
             }
         }
     }
+    
+    lazy var collecVC = CollectionViewController()
+    
+    var contentSelect:contentArray = .board
 //    let contentArray = ["게시판","업무","커뮤니티","회의실예약","사원정보","설정"]
 //    let contentImageArray = ["calendar","folder","display","alarm.fill","person.3.fill","questionmark.circle.fill"]
     @objc func back(){
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    //MARK: init
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,19 +70,43 @@ class SecondViewController: UIViewController {
         let bacbutton = UIBarButtonItem(title:" < ", style: .plain, target: self, action: #selector(back))
         navigationItem.leftBarButtonItem = bacbutton
         
+        collecVC.delegate = self
     }
 }
 
 //index를 선택하여.3
 extension SecondViewController: UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("index\(indexPath.row)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let AController = storyboard.instantiateViewController(withIdentifier: "AController") as! AController
         let BController = storyboard.instantiateViewController(withIdentifier: "BController") as! BController
-        navigationController?.pushViewController(indexPath.row > 2 ? BController : AController , animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+//        navigationController?.pushViewController(indexPath.row > 2 ? BController : AController , animated: true)
         
         
+        switch indexPath.row {
+        case 0:
+            navigationController?.pushViewController(AController, animated: true)
+        case 1:
+            navigationController?.pushViewController(AController, animated: true)
+        case 2:
+            navigationController?.pushViewController(AController, animated: true)
+        case 3:
+            navigationController?.pushViewController(BController, animated: true)
+        case 4:
+            let vc = CollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+            vc.delegate = self
+            present(vc, animated: true, completion: nil)
+        case 5:
+            navigationController?.pushViewController(BController, animated: true)
+        
+        default:
+            break
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contentArray.allCases.count
@@ -96,4 +125,10 @@ extension SecondViewController: UITableViewDataSource {
 
 extension SecondViewController: UITableViewDelegate {
     
+}
+
+extension SecondViewController: CollectionViewControllerDelegate {
+    func didSelect(item: CollectionViewController.list) {
+        item.rawValue == "lee" ? self.presentedViewController?.dismiss(animated: true, completion: nil) : nil
+    }
 }
